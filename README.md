@@ -23,6 +23,16 @@ O projeto inclui um arquivo `docker-compose.yml` configurado para subir:
 - Um banco MySQL 8.
 - O Adminer, uma interface web para gerenciamento do banco, acessível em `localhost:8080`.
 
+### Passos de utilização sem Docker
+Para importar os dados em um banco MySQL local (sem Docker), use o script opcional `init-scripts/IMPORTACOES_PARA_O_BANCO/02-import_demonstracoes.sql`. Este script assume que os arquivos CSV estão na pasta `init-scripts` no repositório clonado. Siga estes passos:
+1. Clone o repositório para sua máquina.
+2. Certifique-se de que os arquivos `1T2023.csv`, `2T2023.csv`, etc., estão em `init-scripts`.
+3. Abra um terminal na raiz do repositório ( `SQL-NivelamentoIntuitiveCare`).
+4. Execute o script com: `mysql --local-infile=1 -u root -p nome_do_banco < init-scripts/IMPORTACOES_PARA_O_BANCO/02-import_demonstracoes.sql`.
+5. O MySQL deve estar configurado para aceitar `LOCAL INFILE`
+Os caminhos no script são relativos à pasta `init-scripts`, onde os CSVs devem estar, e o script está em `init-scripts/IMPORTACOES_PARA_O_BANCO`.
+
+
 ### Passos para Executar
 
 1. Certifique-se de ter o Docker e o Docker Compose instalados.
