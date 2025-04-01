@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mysql:8
+    container_name: meuprojeto-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d  
+    ports:
+      - "3306:3306"
+    command: --secure-file-priv=""
+  
+  adminer:
+    image: adminer
+    container_name: meuprojeto-adminer
+    ports:
+      - "8080:8080"

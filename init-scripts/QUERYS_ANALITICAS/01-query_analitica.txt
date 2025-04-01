@@ -1,0 +1,11 @@
+SELECT 
+    o.Nome_Fantasia, 
+    o.Razao_social, 
+    SUM(dc.vl_saldo_final) AS total_despesas
+FROM demonstracoes_contabeis dc
+JOIN operadoras_saude o ON dc.reg_ans = o.registro_ANS
+WHERE dc.descricao LIKE '%EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS DE ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR%'
+  AND dc.data BETWEEN '2024-10-01' AND '2024-12-31'
+GROUP BY o.Nome_Fantasia, o.Razao_social
+ORDER BY total_despesas DESC
+LIMIT 10;
